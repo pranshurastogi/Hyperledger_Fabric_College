@@ -88,8 +88,75 @@ let Chaincode = class {
     console.log(childAsBytes.toString());
     return childAsBytes;
   }
+ 
+  //rich query model function 
+  
+  async richQuery(stub, args, thisClass){
+        if (args.length < 2) {
+            throw new Error('Incorrect number of arguments. Expecting two arguments');
+        }
 
+        let queryValue = args[1]; // query value you are looking for. ex: student name
+	      let queryElement = args[0]; // object property where you wanted to search for value. ex: searching for student name in particular branch. here branch is a property of object in which we are looking for particular student name 
+        let queryString = {};
+        queryString.selector = {};
+        queryString.selector[queryElement] = queryValue;
+       //queryString.selector[queryElement2] = queryValue2;  (You can add more complex queries like this)
+        let method = thisClass['getQueryResultForQueryString'];
+        let queryResults = await method(stub, JSON.stringify(queryString), thisClass);
+        return queryResults; //shim.success(queryResults);
+    }
+async getQueryResultForQueryString(stub, queryString, thisClass) {
 
+        console.info('- getQueryResultForQueryString queryString:\n' + queryString)
+        let resultsIterator = await stub.getQueryResult(queryString);
+        let method = thisClass['getAllResults'];
+    
+        let results = await method(resultsIterator, false);
+    
+        return Buffer.from(JSON.stringify(results));
+}
+	
+async getAllResults(iterator, isHistory) {
+        let allResults = [];
+        while (true) {
+          let res = await iterator.next();
+    
+          if (res.value && res.value.value.toString()) {
+            let jsonRes = {};
+            console.log(res.value.value.toString('utf8'));
+    
+            if (isHistory && isHistory === true) {
+              jsonRes.TxId = res.value.tx_id;
+              jsonRes.Timestamp = res.value.timestamp;
+              jsonRes.IsDelete = res.value.is_delete.toString();
+              try {
+                jsonRes.Value = JSON.parse(res.value.value.toString('utf8'));
+              } catch (err) {
+                console.log(err);
+                jsonRes.Value = res.value.value.toString('utf8');
+              }
+            } else {
+              jsonRes.Key = res.value.key;
+              try {
+                jsonRes.Record = JSON.parse(res.value.value.toString('utf8'));
+              } catch (err) {
+                console.log(err);
+                jsonRes.Record = res.value.value.toString('utf8');
+              }
+            }
+            allResults.push(jsonRes);
+          }
+          if (res.done) {
+            console.log('end of data');
+            await iterator.close();
+            console.info(allResults);
+            return allResults;
+          }
+        }
+    }
+  
+// end of rich query model functions
 
 
   //  // This is to append more than one incident in the case.
