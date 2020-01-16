@@ -19,7 +19,7 @@ let Chaincode = class {
       throw new Error('Received unknown function ' + ret.fcn + ' invocation');
     }
     try {
-      let payload = await method(stub, ret.params);
+      let payload = await method(stub, ret.params, this);
       return shim.success(payload);
     } catch (err) {
       console.log(err);
