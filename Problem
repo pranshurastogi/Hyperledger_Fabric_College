@@ -1,0 +1,14 @@
+This is a simple structure of two Orgs
+
+1. You can go to Org1 -> chaincode -> college.js to check what function I have implemented.
+
+2. Now if we go to API -> query.js on line 327 to 335 . You will see two functions 
+   1. invokeChaincode and 2. postTransaction.
+what is done, if you uncomment this function and run node query.js file, you will see we can add transaction 
+and query also.
+
+
+But what I want is to perform rich query, currently I have to pass the key of the data (e.g - STUDENT1)
+and then I am getting the result, but if I neeed to search from branch - Computer Sc. How I will get all the results
+
+It will be great if you can add a simple line of rich query with an example. Then I can proceed.
