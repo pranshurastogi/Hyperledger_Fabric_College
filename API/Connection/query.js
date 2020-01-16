@@ -324,7 +324,7 @@ function postTransaction(username, chaincodeId, fcn, args, cb) {
 
 
 
-// invokeChaincode("user3", "college", "createStudent", "mychannel", ['STUDENT2','SKIT122','Krist Stew','COMPUTER SC.','3'], function(err,res){
+// invokeChaincode("user3", "college", "createStudent", "mychannel", ['STUDENT62','SKIT74','Salman','Electronics','3'], function(err,res){
 //     console.log(err,res);
 // });
 
@@ -334,7 +334,10 @@ function postTransaction(username, chaincodeId, fcn, args, cb) {
 //   });
 
 
-
+postTransaction("user3", "college", "richQuery",["stream","Electronics"], function(err,res){
+        console.log(err,res);
+      });
+    
 
 // registerAdmin("admin",function(err,res){
 //     if(res){
