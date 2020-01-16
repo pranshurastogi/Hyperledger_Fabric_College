@@ -18,4 +18,4 @@ docker volume prune
 
 echo ""
 echo "*********** Removing Chaincode images.... *******"
-docker rmi -f $(docker images | grep modernslavery | awk '{print $3}')
+docker rmi -f $(docker images | grep college | awk '{print $3}')

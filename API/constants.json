@@ -1,0 +1,39 @@
+{
+    "nexmo":{
+        "API_KEY":"cbe1defb",
+        "API_SECRET":"e5d86068b5f50b65",
+        "APP_ID":"",
+        "PRIVATE_KEY_PATH":"",
+        "options":{
+            "debug": true,
+            "appendToUserAgent": "string",
+            "timeout": 300
+          },
+          "sourceMobile":  "8888595725"
+    },
+    "bcrypt":{
+        "saltRounds":10,
+        "myPlaintextPassword":"collegewar@1234",
+        "someOtherPlaintextPassword":"not_bacon_notanythingelse"
+    },
+    "mail": {
+        "apiKey": "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",
+        "sourceEmail":"pranshu@tersesoft.com"
+    },
+    "fabric": {
+        "uri": "http://localhost:3000",
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "json": true,
+        "peerAddress": "grpc://localhost:7051",
+        "ordererAddress":"grpc://localhost:7050",
+        "caServerAddress": "http://localhost:7054"
+    },
+    "encryption": {
+        "secret": "Pranshu@1234",
+        "keys": {
+            "instructionKeys": ["instructions"]
+        }
+    }
+}
