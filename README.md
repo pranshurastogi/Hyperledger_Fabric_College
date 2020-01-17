@@ -38,6 +38,9 @@ This project is build on Hyperledger Fabric to keep various college details dece
  Now we need some project theme to implement all these functions, so I have decided college theme as most of us can relate to that and also it is quite vast and most of our things can be done.
 Initially, I have just created two function to create `Student and Teacher`. You can always modify this to add more functions and complexity.
 
+## ProblemAndSolution ->
+Please add your problems in Problem.md and try to add Solution in Solution.md
+These both files are present in ProblemAndSolution folder
 
 ## Rules ->
 ```
