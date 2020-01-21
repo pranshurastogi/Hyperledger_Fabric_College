@@ -19,6 +19,14 @@ This project is build on Hyperledger Fabric to keep various college details dece
       
  I will suggest you to fork this and try running it, if you face any issues. Do let me know.
  
+ ## Remove previous Installation - 
+ ```
+ sudo docker rm -f $(docker ps -aq) && sudo  docker rmi -f $(docker images | grep dev | awk '{print $3}') && sudo  docker volume prune
+
+
+sudo docker network prune && docker container prune && docker volume prune
+```
+ 
  ## How to run ->
  ```
  1. Open terminal
